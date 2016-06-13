@@ -1,6 +1,7 @@
 var React = require('react');
-var Login = require('../containers/Login')
-
+var LoginContainer = require('../containers/LoginContainer')
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 var Home = React.createClass({
 	
 
@@ -8,8 +9,10 @@ var Home = React.createClass({
 		return(
 
 			<div>
-				<h1>Welcome To Messanger</h1>
-				<Login />
+				<LoginContainer />
+				<Link to="/signup">
+					<p>Not A Member</p>
+				</Link>
 			</div>
 		)
 	}
