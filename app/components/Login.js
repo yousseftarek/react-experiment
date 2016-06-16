@@ -1,31 +1,34 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+var React 		= require('react');
+var PropTypes 	= React.PropTypes;
+var ReactRouter = require('react-router');
+var Link 		= ReactRouter.Link;
 
 function Login(props){
 	return(
 		<div>
-			<form onSubmit={props.onSubmitUser, props.submitPassword}>
+			<h1> Welcome To Messenger </h1>
+			<form onSubmit={props.onSubmitData}>
 				<div className="form-group">
-					<input className="form-control" placeholder="Username" type="text" onChange={props.onUpdateUser} value={props.username}/>
+					<input name="username" className="form-control" placeholder="Username" type="text" />
 				</div>
 
 				<div className="form-group">
-					<input className="form-control" placeholder="Password" type="password"/*value={props.username}*//>
+					<input name="password" className="form-control" placeholder="Password" type="password" />
 				</div>
 
 				<div className="form-group col-sm-4 col-sm-offset-4">
 					<button className="btn btn-block btn-success" type="submit"> Login </button>
 				</div>
 			</form>
+			<Link to="/signup">
+				<p>Not A Member</p>
+			</Link>
 		</div>
 		)
 }
 
 Login.propTypes = {
-	username : PropTypes.string.isRequired,
-	onSubmitUser : PropTypes.func.isRequired,
-	onUpdateUser : PropTypes.func.isRequired,
-	submitPassword : PropTypes.func.isRequired
+	onSubmitData	: PropTypes.func.isRequired
 }
 
-module.exports = Login;	
+module.exports = Login;

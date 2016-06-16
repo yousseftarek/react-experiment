@@ -1,18 +1,14 @@
 var React = require('react');
-var LoginContainer = require('../containers/LoginContainer')
+var LoginContainer = require('../containers/LoginContainer');
 var ReactRouter = require('react-router');
+
 var Link = ReactRouter.Link;
 var Home = React.createClass({
-	
-
 	render: function(){
 		return(
 
-			<div>
+			<div className=" jumbotron col-sm-6 col-sm-offset-3">
 				<LoginContainer />
-				<Link to="/signup">
-					<p>Not A Member</p>
-				</Link>
 			</div>
 		)
 	}

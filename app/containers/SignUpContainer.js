@@ -5,22 +5,26 @@ var SignUp = require('../components/SignUp');
 var SignUpContainer = React.createClass({
 	
 	contextTypes: {
-		router: React.ProtoTypes.object.isRequired
+		router: React.PropTypes.object.isRequired
 	},
-	getInitialState: function(){
+	/*getInitialState: function(){
 		return{
 			username: ''
 		}
-	},
-	handleSubmitUser: function(){
-		//check if the username already exists and if not add to database
-	},
-	handlePassword: function(){
-		//initialize password
+	},*/
+	handleSubmitData: function(event){
+		event.preventDefault();
+		var form = event.target;
+		var username = form.querySelector('[name=username]').value;
+		var password = form.querySelector('[name=password]').value;
+
+		if(username === 'lolo' && password === 'lolo'){
+			this.context.router.push('/login');
+		}
 	},
 	render : function(){
 		return (
-			<SignUp username={this.state.username} onSubmitUser={this.handleSubmitUser} submitPassword={this.handlePassword}/>
+			<SignUp onSubmitData={this.handleSubmitData}/>
 			)
 	}
 })

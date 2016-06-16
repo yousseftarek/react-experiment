@@ -1,18 +1,18 @@
-var react 		= require('react');
+var React 		= require('react');
 var PropTypes 	= React.PropTypes;
 
 
 function SignUp(props){
 	return(
-		<div>
+		<div className=" jumbotron col-sm-6 col-sm-offset-3 text-center">
 			<h1> Sign Up </h1>
-			<form onSubmit={props.onSubmitNewUser, props.submitPassword}>
+			<form onSubmit={props.onSubmitData}>
 				<div className="form-group">
-					<input className="form-control" placeholder="Username" type="text" onChange={props.onUpdateUser} value={props.username}/>
+					<input className="form-control" placeholder="Username" type="text" name="username"/>
 				</div>
 
 				<div className="form-group">
-					<input className="form-control" placeholder="Password" type="password"{/*value={props.username}*/}/>
+					<input className="form-control" placeholder="Password" name="password" type="password"/> {/*value={props.username}*/}
 				</div>
 
 				<div className="form-group col-sm-4 col-sm-offset-4">
@@ -24,10 +24,7 @@ function SignUp(props){
 }
 
 SignUp.propTypes = {
-	username 		: PropTypes.string.isRequired,
-	onSubmitUser 	: PropTypes.func.isRequired,
-	onUpdateUser 	: PropTypes.func.isRequired,
-	submitPassword 	: PropTypes.func.isRequired
+	onSubmitData 		: PropTypes.func.isRequired
 }
 
 module.exports = SignUp;

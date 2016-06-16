@@ -5,27 +5,43 @@ var Login = require('../components/Login')
 
 var LoginContainer = React.createClass({
 
+	contextTypes: {
+		router: React.PropTypes.object.isRequired
+	},
+
 	getInitialState: function(){
 		return{
 			username: ''
 		}
 	},
 	handleUpdateUser: function(event){
-		this.setState({
+		/*this.setState({
 			username: event.target.value
-		})
+		})*/
 	},
-	handlePassword: function(){
+	handleUpdatePassword: function(event){
 		//should handle password
 	},
 	handleSubmitUser: function(){
 		//handle checking username
 	},
+	handleSubmitData : function(event){
+	event.preventDefault();
+
+    var form = event.target;
+    var username = form.querySelector('[name=username]').value;
+    var password = form.querySelector('[name=password]').value;
+    console.log("username: " + username + " password: " + password);
+    if(username === 'lolo' && password === 'lolo'){
+    	this.context.router.push('/app');
+    }
+	},
 	render: function(){
+		
 		return(
 
 			<div>
-				<Login onUpdateUser={this.handleUpdateUser} submitPassword={this.handlePassword} username={this.state.username} onSubmitUser={this.handleSubmitUser}/>
+				<Login onSubmitData={this.handleSubmitData}/>
 			</div>
 			)
 	}
