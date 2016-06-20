@@ -1,23 +1,31 @@
-var React = require('react');
+var React 		= require('react');
 var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
-var Login = require('../components/Login')
+var Link 		= ReactRouter.Link;
+var Login 		= require('../components/Login');
+var connect 	= require('react-redux').connect;
 
-var LoginContainer = React.createClass({
+var mapDispatchToProps = function(dispatch, ownProps){
+	return {
+		loginUser : function(username){
+			dispatch({
+				type: 'LOGIN_USER',
+				username: username
+			})
+		}
+	}
+}
+
+var LoginContainer = connect(mapDispatchToProps)(Login);
+
+/*var LoginContainer = React.createClass({
 
 	contextTypes: {
 		router: React.PropTypes.object.isRequired
 	},
-
-	getInitialState: function(){
-		return{
-			username: ''
-		}
-	},
 	handleUpdateUser: function(event){
 		/*this.setState({
 			username: event.target.value
-		})*/
+		})
 	},
 	handleUpdatePassword: function(event){
 		//should handle password
@@ -28,13 +36,7 @@ var LoginContainer = React.createClass({
 	handleSubmitData : function(event){
 	event.preventDefault();
 
-    var form = event.target;
-    var username = form.querySelector('[name=username]').value;
-    var password = form.querySelector('[name=password]').value;
-    console.log("username: " + username + " password: " + password);
-    if(username === 'lolo' && password === 'lolo'){
-    	this.context.router.push('/app');
-    }
+    
 	},
 	render: function(){
 		
@@ -46,5 +48,5 @@ var LoginContainer = React.createClass({
 			)
 	}
 })
-
+*/
 module.exports = LoginContainer;

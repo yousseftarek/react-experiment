@@ -3,11 +3,30 @@ var PropTypes 	= React.PropTypes;
 var ReactRouter = require('react-router');
 var Link 		= ReactRouter.Link;
 
-function Login(props){
-	return(
+var Login = React.createClass({
+
+	onSubmitData: function(event){
+		event.preventDefault();
+		var form = event.target;
+    	var username = form.querySelector('[name=username]').value;
+    	var password = form.querySelector('[name=password]').value;
+    	console.log("username: " + username + " password: " + password);
+    	if(username === 'lolo' && password === 'lolo'){
+    	this.context.router.push({
+    		pathname: '/app',
+    		username: username
+    	});
+    }
+    else{
+    	this.context.router.push('');
+    }
+	},
+
+	render: function(){
+		return(
 		<div>
 			<h1> Welcome To Messenger </h1>
-			<form onSubmit={props.onSubmitData}>
+			<form onSubmit={onSubmitData}>
 				<div className="form-group">
 					<input name="username" className="form-control" placeholder="Username" type="text" />
 				</div>
@@ -26,7 +45,8 @@ function Login(props){
 		</div>
 		)
 }
-
+}
+)
 Login.propTypes = {
 	onSubmitData	: PropTypes.func.isRequired
 }
