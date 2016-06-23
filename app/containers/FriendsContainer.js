@@ -1,19 +1,25 @@
-var React 		= require('react');
-var PropTypes 	= React.PropTypes;
-var connect 	= require('react-redux').connect;
-var Friends 	= require('../components/Friends');
+import React 		from 'react' ;
+import {connect} 	from 'react-redux';
+import Friends 		from '../components/Friends';
+import {updateChat} from '../config/actionCreators/actions';
+
+
+
+const mapStateToProps = function(store){
+	return {
+		username: store.login.username
+	}
+}
 
 const mapDispatchToProps = function(dispatch, ownProps){
 	return {
-		loadChat: function(id){
-			dispatch({
-				type: 'LOAD_CHAT',
-				id: id
-			})
+		loadChat: function(chat){
+			dispatch(updateChat(chat));
 		}
 	}
 }
 
-var FriendsContainer = connect(mapDispatchToProps)(Friends);
+ 
 
-module.exports = FriendsContainer;
+
+export default connect(mapStateToProps,mapDispatchToProps)(Friends);

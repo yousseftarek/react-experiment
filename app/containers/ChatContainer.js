@@ -1,30 +1,24 @@
-var React 		= require('react');
-var PropTypes 	= React.PropTypes;
-var connect 	= require('react-redux').connect;
-var Chat 		= require('../components/Chat');
+import React 		from 'react';
+import {connect} 	from 'react-redux';
+import Chat 		from '../components/Chat';
+import {sendMessage} from '../config/actionCreators/actions';
 
-/*var ChatContainer = React.createClass({
-	render: function(){
-		return (
-			<Chat />
-		)
-	}
-})*/
 
-const mapDispatchToProps = function(dispatch, ownProps){
-	return{
-		sendMessage: function(message, sender){
-			dispatch({
-				type: 'SEND_MESSAGE',
-				text: message,
-				sender: sender,
-				date: Date.now()
-			})
-		},
-		messages: ownProps.messages
+const mapStateToProps = function(store){
+	return {
+		messages: store.messages,
+		username: store.login.username
 	}
 }
 
-var ChatContainer = connect(mapDispatchToProps)(Chat);
+const mapDispatchToProps = function(dispatch, ownProps){
+	return{
+		send: function(message, sender){
+			dispatch(sendMessage(message, sender));
+		}
+	}
+}
 
-module.exports = ChatContainer;
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Chat);

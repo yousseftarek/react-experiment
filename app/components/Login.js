@@ -1,32 +1,43 @@
-var React 		= require('react');
-var PropTypes 	= React.PropTypes;
-var ReactRouter = require('react-router');
-var Link 		= ReactRouter.Link;
+import React 			from 'react';
+import {Router, Link} 		from 'react-router';
+import {push} 			from 'react-router-redux';
+import {loginUser} 		from '../config/actionCreators/actions';
+import {loadFriends} 	from '../config/actionCreators/actions';
 
-var Login = React.createClass({
+var PropTypes 	= React.PropTypes;
+/*var Link 		= Router.Link;*/
+
+
+var Login 		= React.createClass({
+
+	contextTypes: {
+		store: React.PropTypes.object
+	},
 
 	onSubmitData: function(event){
 		event.preventDefault();
 		var form = event.target;
     	var username = form.querySelector('[name=username]').value;
     	var password = form.querySelector('[name=password]').value;
+    	let store = this.context.store;
     	console.log("username: " + username + " password: " + password);
-    	if(username === 'lolo' && password === 'lolo'){
-    	this.context.router.push({
-    		pathname: '/app',
-    		username: username
-    	});
+    	if(username === 'lolo' && password === 'lolo'){ //checking the DB happens here
+
+    		store.dispatch(loginUser(username));
+			store.dispatch(loadFriends([{username: 'myassin'}]));
+
+    		store.dispatch(push('/app'));
     }
     else{
-    	this.context.router.push('');
+    	store.dispatch(push(''));
     }
 	},
 
 	render: function(){
-		return(
+		return (
 		<div>
 			<h1> Welcome To Messenger </h1>
-			<form onSubmit={onSubmitData}>
+			<form onSubmit={this.onSubmitData}>
 				<div className="form-group">
 					<input name="username" className="form-control" placeholder="Username" type="text" />
 				</div>
@@ -44,11 +55,11 @@ var Login = React.createClass({
 			</Link>
 		</div>
 		)
-}
+	}
 }
 )
-Login.propTypes = {
+/*Login.propTypes = {
 	onSubmitData	: PropTypes.func.isRequired
-}
+}*/
 
-module.exports = Login;
+export default Login;

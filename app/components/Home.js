@@ -1,8 +1,7 @@
-var React = require('react');
-var LoginContainer = require('../containers/LoginContainer');
-var ReactRouter = require('react-router');
+import React 			from 'react';
+import LoginContainer 	from '../containers/LoginContainer';
+import {Router} 		from 'react-router';
 
-var Link = ReactRouter.Link;
 var Home = React.createClass({
 	render: function(){
 		return(
@@ -14,4 +13,4 @@ var Home = React.createClass({
 	}
 })
 
-module.exports = Home;
+export default Home;

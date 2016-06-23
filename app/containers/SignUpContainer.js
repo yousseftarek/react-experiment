@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var SignUp = require('../components/SignUp');
+import React from 'react';
+import {Router} from 'react-router';
+import SignUp from '../components/SignUp';
 
 var SignUpContainer = React.createClass({
 	
@@ -30,4 +30,4 @@ var SignUpContainer = React.createClass({
 })
 
 
-module.exports = SignUpContainer;
+export default SignUpContainer;

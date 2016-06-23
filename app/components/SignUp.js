@@ -1,4 +1,4 @@
-var React 		= require('react');
+import React 		from 'react';
 var PropTypes 	= React.PropTypes;
 
 
@@ -27,4 +27,4 @@ SignUp.propTypes = {
 	onSubmitData 		: PropTypes.func.isRequired
 }
 
-module.exports = SignUp;
+export default SignUp;

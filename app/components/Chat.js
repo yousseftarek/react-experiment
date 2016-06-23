@@ -1,7 +1,8 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Message = require('./Message');
-var connect = require('react-redux').connect;
+import React 		from 'react';
+import Message 		from './Message';
+import {connect} 	from 'react-redux';
+
+var PropTypes 		= React.PropTypes;
 
 var Chat = React.createClass({
 
@@ -9,9 +10,10 @@ var Chat = React.createClass({
 		event.preventDefault();
 		var form = event.target;
 		var message = form.querySelector('[name = message]').value;
+		form.querySelector('[name = message]').value = '';
 		var username = this.props.username;
-		this.props.sendMessage(message, username);
-	}
+		this.props.send(message, username);
+	},
 
 	render: function() {
 		var exchangedMessages = [];
@@ -35,7 +37,7 @@ var Chat = React.createClass({
 				</div>
 
 				<footer>
-					<form onSubmit={handleMessage}>
+					<form onSubmit={this.handleMessage}>
 						<input type='text' name="message"/>
 						<button type="submit">Send</button>
 					</form>
@@ -49,11 +51,11 @@ var Chat = React.createClass({
 Chat.propTypes = {
 	messages 	: PropTypes.array.isRequired,
 	username 	: PropTypes.string.isRequired,
-	sendMessage : PropTypes.func.isRequired,
-	imgURL 		: PropTypes.string.isRequired,
-	contactName : PropTypes.string.isRequired
+	sendMessage : PropTypes.func.isRequired
+	/*imgURL 		: PropTypes.string.isRequired,
+	contactName : PropTypes.string.isRequired*/
 }
 
 
 
-module.exports = Chat;
+export default Chat;

@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var PropTypes = React.PropTypes;
 
 function Message(props){
@@ -17,4 +17,4 @@ Message.propTypes = {
 	text	: PropTypes.string.isRequired
 }
 
-module.exports = Message;
+export default Message;
